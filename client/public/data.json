@@ -1,0 +1,202 @@
+[
+  {
+    "id": "1",
+    "name": "Room A1",
+    "type": "Private Office",
+    "capacity": 2,
+    "amenities": ["Whiteboard", "WiFi", "Air Conditioning"],
+    "availability": true,
+    "pricePerHour": 25,
+    "location": "1st Floor"
+  },
+  {
+    "id": "2",
+    "name": "Room A2",
+    "type": "Meeting Room",
+    "capacity": 8,
+    "amenities": ["Projector", "Whiteboard", "Conference Phone", "WiFi"],
+    "availability": false,
+    "pricePerHour": 50,
+    "location": "1st Floor"
+  },
+  {
+    "id": "3",
+    "name": "Room B1",
+    "type": "Hot Desk",
+    "capacity": 1,
+    "amenities": ["WiFi", "Power Outlet"],
+    "availability": true,
+    "pricePerHour": 10,
+    "location": "2nd Floor"
+  },
+  {
+    "id": "4",
+    "name": "Room B2",
+    "type": "Hot Desk",
+    "capacity": 1,
+    "amenities": ["WiFi", "Power Outlet"],
+    "availability": true,
+    "pricePerHour": 10,
+    "location": "2nd Floor"
+  },
+  {
+    "id": "5",
+    "name": "Room C1",
+    "type": "Conference Room",
+    "capacity": 12,
+    "amenities": ["Projector", "Whiteboard", "WiFi", "Conference Phone"],
+    "availability": true,
+    "pricePerHour": 75,
+    "location": "3rd Floor"
+  },
+  {
+    "id": "6",
+    "name": "Room C2",
+    "type": "Meeting Room",
+    "capacity": 6,
+    "amenities": ["TV Screen", "WiFi", "Whiteboard"],
+    "availability": false,
+    "pricePerHour": 40,
+    "location": "3rd Floor"
+  },
+  {
+    "id": "7",
+    "name": "Room D1",
+    "type": "Private Office",
+    "capacity": 3,
+    "amenities": ["Whiteboard", "WiFi", "Air Conditioning", "Printer"],
+    "availability": true,
+    "pricePerHour": 30,
+    "location": "4th Floor"
+  },
+  {
+    "id": "8",
+    "name": "Room D2",
+    "type": "Hot Desk",
+    "capacity": 1,
+    "amenities": ["WiFi", "Power Outlet"],
+    "availability": true,
+    "pricePerHour": 10,
+    "location": "4th Floor"
+  },
+  {
+    "id": "9",
+    "name": "Room E1",
+    "type": "Event Space",
+    "capacity": 50,
+    "amenities": ["Stage", "Projector", "Speakers", "WiFi"],
+    "availability": true,
+    "pricePerHour": 200,
+    "location": "Ground Floor"
+  },
+  {
+    "id": "10",
+    "name": "Room E2",
+    "type": "Workshop Room",
+    "capacity": 20,
+    "amenities": ["Projector", "Whiteboard", "WiFi", "Tables"],
+    "availability": false,
+    "pricePerHour": 80,
+    "location": "Ground Floor"
+  },
+  {
+    "id": "11",
+    "name": "Room F1",
+    "type": "Private Office",
+    "capacity": 4,
+    "amenities": ["Whiteboard", "WiFi", "Air Conditioning", "Ergonomic Chairs"],
+    "availability": true,
+    "pricePerHour": 35,
+    "location": "5th Floor"
+  },
+  {
+    "id": "12",
+    "name": "Room F2",
+    "type": "Conference Room",
+    "capacity": 10,
+    "amenities": ["Projector", "WiFi", "Conference Phone"],
+    "availability": false,
+    "pricePerHour": 65,
+    "location": "5th Floor"
+  },
+  {
+    "id": "13",
+    "name": "Room G1",
+    "type": "Hot Desk",
+    "capacity": 1,
+    "amenities": ["WiFi", "Power Outlet"],
+    "availability": true,
+    "pricePerHour": 10,
+    "location": "6th Floor"
+  },
+  {
+    "id": "14",
+    "name": "Room G2",
+    "type": "Private Office",
+    "capacity": 3,
+    "amenities": ["Whiteboard", "WiFi", "Printer", "Air Conditioning"],
+    "availability": true,
+    "pricePerHour": 28,
+    "location": "6th Floor"
+  },
+  {
+    "id": "15",
+    "name": "Room H1",
+    "type": "Meeting Room",
+    "capacity": 6,
+    "amenities": ["Whiteboard", "WiFi", "Conference Phone"],
+    "availability": true,
+    "pricePerHour": 45,
+    "location": "7th Floor"
+  },
+  {
+    "id": "16",
+    "name": "Room H2",
+    "type": "Conference Room",
+    "capacity": 15,
+    "amenities": ["Projector", "WiFi", "Whiteboard"],
+    "availability": true,
+    "pricePerHour": 85,
+    "location": "7th Floor"
+  },
+  {
+    "id": "17",
+    "name": "Room I1",
+    "type": "Hot Desk",
+    "capacity": 1,
+    "amenities": ["WiFi", "Power Outlet"],
+    "availability": true,
+    "pricePerHour": 10,
+    "location": "8th Floor"
+  },
+  {
+    "id": "18",
+    "name": "Room I2",
+    "type": "Workshop Room",
+    "capacity": 25,
+    "amenities": ["Projector", "WiFi", "Whiteboard", "Tables"],
+    "availability": true,
+    "pricePerHour": 90,
+    "location": "8th Floor"
+  },
+  {
+    "id": "19",
+    "name": "Room J1",
+    "type": "Private Office",
+    "capacity": 2,
+    "amenities": ["Whiteboard", "WiFi", "Air Conditioning"],
+    "availability": false,
+    "pricePerHour": 25,
+    "location": "9th Floor"
+  },
+  {
+    "id": "20",
+    "name": "Room J2",
+    "type": "Event Space",
+    "capacity": 100,
+    "amenities": ["Stage", "Speakers", "WiFi", "Lighting"],
+    "availability": true,
+    "pricePerHour": 300,
+    "location": "Roof Deck"
+  }
+]
