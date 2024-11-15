@@ -32,7 +32,7 @@ const Home = () => {
         <Carousel className="mx-10">
           <CarouselContent className="flex justify-center items-stretch">
             {rooms.map((room: any) => (
-              <CarouselItem key={room.id} className="p-2 md:basis-1/4 sm:basis-1/2">
+              <CarouselItem key={room.id} className="p-4 md:basis-1/4 sm:basis-1/2">
                 <div className="bg-gray-300 dark:bg-white p-4 rounded-lg shadow-md cursor-pointer h-full">
                   <div className="w-full h-40 overflow-hidden rounded-lg mb-4">
                     <img src="/workspace.jpeg" alt="WorkSpace Pic" className="w-full h-full object-cover" />

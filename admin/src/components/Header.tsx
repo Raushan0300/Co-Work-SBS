@@ -1,6 +1,4 @@
-import { useNavigate } from "react-router-dom";
 import { ModeToggle } from "./mode-toggle";
-import { Button } from "./ui/button";
 import { useEffect, useState } from "react";
 import { UserCircle2Icon } from "lucide-react";
 import {
@@ -14,20 +12,11 @@ import {
 import { fetchData } from "@/config";
 
 const Header = () => {
-  const navigate = useNavigate();
 
-  const [loggedIn, setLoggedIn] = useState<boolean>(false);
   const [name, setName] = useState<string>("");
+  const [role, setRole] = useState<string>("");
 
   const token = localStorage.getItem("token");
-
-  useEffect(()=>{
-    if(token){
-      setLoggedIn(true);
-    } else{
-      setLoggedIn(false);
-    };
-  }, [token]);
 
   useEffect(()=>{
     const fetchProfile = async()=>{
@@ -35,6 +24,7 @@ const Header = () => {
         const res = await fetchData("/profile", "GET", {}, {'authorization': token});
       if(res.status === 200){
         setName(res.data.user.name);
+        setRole(res.data.user.role);
       }
       }
     };
@@ -46,21 +36,21 @@ const Header = () => {
         <div className="flex justify-between items-center">
             <div className="flex justify-center items-center gap-5">
                 <img src="/logo.png" alt="Co-Work" width={50} />
-                <h1 className="text-2xl font-[Kablammo]">Co-Work</h1>
+                <h1 className="text-2xl font-[Kablammo]">Co-Work <span className="text-sm text-gray-500 font-sans">(Admin)</span></h1>
             </div>
             <div className="flex justify-center items-center gap-3">
                 <ModeToggle />
-                {!loggedIn ? <Button onClick={()=>{navigate('/auth')}}>Sign In</Button> : <DropdownMenu>
+                <DropdownMenu>
   <DropdownMenuTrigger><UserCircle2Icon className="cursor-pointer" /></DropdownMenuTrigger>
   <DropdownMenuContent>
-    <DropdownMenuLabel>{name}</DropdownMenuLabel>
+    <DropdownMenuLabel>{name} <span className="text-sm text-gray-500">({role})</span></DropdownMenuLabel>
     <DropdownMenuSeparator />
     <DropdownMenuItem>Profile</DropdownMenuItem>
     <DropdownMenuItem>Billing</DropdownMenuItem>
     <DropdownMenuItem>Subscription</DropdownMenuItem>
   </DropdownMenuContent>
 </DropdownMenu>
-}
+
             </div>
         </div>
     </div>

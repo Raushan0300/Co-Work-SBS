@@ -12,7 +12,7 @@ const Auth = () => {
   const handleLogin = async(e: React.FormEvent<HTMLFormElement>)=>{
     e.preventDefault();
 
-    const res = await fetchData("/auth/signin", "POST", {email, password}, {});
+    const res = await fetchData("/auth/admin/signin", "POST", {email, password}, {});
     if(res.status === 200){
       const token = res.data.token;
       localStorage.setItem("token", token);
@@ -25,7 +25,7 @@ const Auth = () => {
   const handleSignup = async(e: React.FormEvent<HTMLFormElement>)=>{
     e.preventDefault();
 
-    const res = await fetchData("/auth/signup", "POST", {name, email, password}, {});
+    const res = await fetchData("/auth/admin/signup", "POST", {name, email, password, role:"admin"}, {});
     if(res.status === 200){
       const token = res.data.token;
       localStorage.setItem("token", token);

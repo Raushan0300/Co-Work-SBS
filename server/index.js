@@ -18,6 +18,7 @@ app.get('/', (req, res)=>{
 
 app.use('/api/auth', require('./routes/signinRoute'));
 app.use('/api/auth', require('./routes/signupRoute'));
+app.use('/api/profile', require('./routes/getProfileRoute'));
 
 
 
