@@ -10,7 +10,7 @@ const authenticateController = async(req, res, next)=>{
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         if(!decoded) return res.status(401).json({err: 'Token is not valid'});
 
-        const user = await User.findById(decoded.user.id).select('-password -_id -__v');
+        const user = await User.findById(decoded.user.id).select('-password -__v');
         if(!user) return res.status(404).json({err: 'User not found'});
 
         req.user = user;

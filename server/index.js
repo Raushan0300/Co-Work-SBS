@@ -19,7 +19,7 @@ app.get('/', (req, res)=>{
 app.use('/api/auth', require('./routes/signinRoute'));
 app.use('/api/auth', require('./routes/signupRoute'));
 app.use('/api/profile', require('./routes/getProfileRoute'));
-
+app.use('/api', require('./routes/roomRoute'));
 
 
 app.listen(PORT, ()=> console.log(`Server is running on port ${PORT}`));
