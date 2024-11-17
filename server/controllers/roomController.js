@@ -28,12 +28,32 @@ const getAdminRoomsController = async(req, res) => {
         const isAdmin = req.user.role;
         if(isAdmin !== 'admin') return res.status(400).json({err: "You are not authorized to view rooms"});
 
-        const rooms = await Room.find({addedBy: req.user._id}).select('-addedBy -__v -_id');
+        const rooms = await Room.find({addedBy: req.user._id}).select('-addedBy -__v');
         return res.status(200).json(rooms);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({err: 'Server error occurred'});
+    }
+};
+
+const getUserRoomsController = async(req, res) => {
+    try {
+        const rooms = await Room.find({roomAvailability: true}).select('-addedBy -__v');
+        return res.status(200).json(rooms);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({err: 'Server error occurred'});
+    }
+};
+
+const getRoomByIdController = async(req, res) => {
+    try {
+        const room = await Room.findById(req.query.id).select('-addedBy -__v');
+        return res.status(200).json(room);
     } catch (error) {
         console.log(error);
         return res.status(500).json({err: 'Server error occurred'});
     }
 }
 
-module.exports = {addRoomController, getAdminRoomsController};
+module.exports = {addRoomController, getAdminRoomsController, getUserRoomsController, getRoomByIdController};

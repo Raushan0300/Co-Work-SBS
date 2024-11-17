@@ -1,4 +1,3 @@
-import Header from "@/components/Header";
 import {
   Carousel,
   CarouselContent,
@@ -6,18 +5,28 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import data from "../../public/data.json";
 import { useEffect, useState } from "react";
+import { fetchData } from "@/config";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
   const [rooms, setRooms] = useState<any>([]);
 
+  const token = localStorage.getItem("token");
+
+  const fetchRooms = async()=>{
+    const res = await fetchData("/get-rooms", "GET", {}, {Authorization: token});
+    if(res.status === 200){
+      setRooms(res.data);
+    };
+  }
+
   useEffect(()=>{
-    setRooms(data);
+    fetchRooms();
   },[]);
   return (
     <div>
-      <Header />
       <div className="flex flex-col mt-10">
         <h1 className="text-3xl text-center">
           Welcome to <span className="text-3xl font-[Kablammo]">Co-Work</span>
@@ -32,19 +41,19 @@ const Home = () => {
         <Carousel className="mx-10">
           <CarouselContent className="flex justify-center items-stretch">
             {rooms.map((room: any) => (
-              <CarouselItem key={room.id} className="p-4 md:basis-1/4 sm:basis-1/2">
+              <CarouselItem key={room._id} className="p-4 md:basis-1/4 sm:basis-1/2" onClick={()=>{navigate(`/room?id=${room._id}`)}}>
                 <div className="bg-gray-300 dark:bg-white p-4 rounded-lg shadow-md cursor-pointer h-full">
                   <div className="w-full h-40 overflow-hidden rounded-lg mb-4">
                     <img src="/workspace.jpeg" alt="WorkSpace Pic" className="w-full h-full object-cover" />
                   </div>
                   <div className="flex justify-between mb-1">
-                  <h3 className="text0lg font-semibold text-black">{room.name}</h3>
-                  <h3 className="text-lg font-semibold text-black">$ {room.pricePerHour}/hr</h3>
+                  <h3 className="text0lg font-semibold text-black">{room.roomName}</h3>
+                  <h3 className="text-lg font-semibold text-black">$ {room.roomPrice}/hr</h3>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-500 mb-1">Space Type: {room.type}</p>
-                    <p className="text-sm text-gray-500 mb-1">Amenities: {room.amenities.join(", ")}</p>
-                    <p className="text-sm text-gray-500">Capacity: {room.capacity}</p>
+                    <p className="text-sm text-gray-500 mb-1">Space Type: {room.roomType}</p>
+                    <p className="text-sm text-gray-500 mb-1">Amenities: {room.roomAmentities.join(", ")}</p>
+                    <p className="text-sm text-gray-500">Capacity: {room.roomCapacity}</p>
                   </div>
                 </div>
               </CarouselItem>
@@ -84,23 +93,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-
-      <footer className="mt-16 bg-gray-800 text-gray-300 py-10">
-        <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center mb-5">
-            <h3 className="text-2xl font-semibold font-[Kablammo]">Co-Work</h3>
-            <div className="flex space-x-4">
-              <a href="#" className="text-gray-300 hover:text-white hover:underline">About Us</a>
-              <a href="#" className="text-gray-300 hover:text-white hover:underline">Contact Us</a>
-              <a href="#" className="text-gray-300 hover:text-white hover:underline">Privacy Policy</a>
-              <a href="#" className="text-gray-300 hover:text-white hover:underline">Terms & Conditions</a>
-            </div>
-          </div>
-          <p className="text-center text-sm">
-            &copy; {new Date().getFullYear()} Co-Work. All Rights Reserved. Made with ❤️ by <a href="https://raushan.xyz" className="text-white hover:underline">Raushan</a>
-          </p>
-        </div>
-      </footer>
     </div>
   );
 };

@@ -26,28 +26,19 @@ const Home = () => {
   const [roomType, setRoomType] = useState<string>("");
   const [roomCapacity, setRoomCapacity] = useState<number>();
   const [roomPrice, setRoomPrice] = useState<number>();
-  const [roomAmenities, setRoomAmenities] = useState<string[]>([]);
-  const [roomAvailable, setRoomAvailable] = useState<boolean>(false);
+  const [roomAmentities, setRoomAmentities] = useState<string[]>([]);
+  const [roomAvailability, setRoomAvailability] = useState<boolean>(false);
   const [roomLocation, setRoomLocation] = useState<string>("");
 
   const token = localStorage.getItem("token");
 
-  const handleAddRoom = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleAddRoom = async(e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setRooms([
-      ...rooms,
-      {
-        id: rooms.length + 1,
-        name: roomName,
-        type: roomType,
-        capacity: roomCapacity,
-        pricePerHour: roomPrice,
-        amenities: roomAmenities,
-        available: roomAvailable,
-        location: roomLocation,
-      },
-    ]);
-    alert("Room Added Successfully");
+    const res = await fetchData("/admin/add-room", "POST", {roomName, roomAmentities, roomAvailability, roomCapacity, roomLocation, roomType, roomPrice}, {Authorization: token});
+    if(res.status === 200){
+      alert("Room Added Successfully");
+      window.location.reload();
+    }
     // window.location.reload();
   };
 
@@ -73,16 +64,16 @@ const Home = () => {
     <DialogHeader>
       <DialogTitle>Add New Room</DialogTitle>
       <DialogDescription>
-        <form className="flex flex-col gap-2 mt-4" onSubmit={handleAddRoom}>
+        <form className="flex flex-col gap-2 mt-4 dark:text-white text-gray-900" onSubmit={handleAddRoom}>
           <Input placeholder="Enter Room Name" value={roomName} onChange={(e)=>{setRoomName(e.target.value)}} />
           <Input placeholder="Enter Room Type" value={roomType} onChange={(e)=>{setRoomType(e.target.value)}} />
           <Input placeholder="Enter Room Capacity" type="number" value={roomCapacity} onChange={(e)=>{setRoomCapacity(parseInt(e.target.value))}} />
           <Input placeholder="Enter Room Price" type="number" value={roomPrice} onChange={(e)=>{setRoomPrice(parseInt(e.target.value))}} />
-          <Input placeholder="Enter Room Amenities" value={roomAmenities.join(",")} onChange={(e)=>{setRoomAmenities(e.target.value.split(","))}} />
+          <Input placeholder="Enter Room Amenities" value={roomAmentities.join(",")} onChange={(e)=>{setRoomAmentities(e.target.value.split(", "))}} />
           <Input placeholder="Enter Room Location" value={roomLocation} onChange={(e)=>{setRoomLocation(e.target.value)}} />
           <div className="flex justify-between items-center">
             <h4>Availaibilty</h4>
-          <Input className="w-6" placeholder="Enter Room Availability" type="checkbox" checked={roomAvailable} onChange={(e)=>{setRoomAvailable(e.target.checked)}} />
+          <Input className="w-6" placeholder="Enter Room Availability" type="checkbox" checked={roomAvailability} onChange={(e)=>{setRoomAvailability(e.target.checked)}} />
           </div>
           <Button type="submit">Add Room</Button>
         </form>
