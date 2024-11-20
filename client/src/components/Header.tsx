@@ -55,9 +55,10 @@ const Header = () => {
   <DropdownMenuContent>
     <DropdownMenuLabel>{name}</DropdownMenuLabel>
     <DropdownMenuSeparator />
-    <DropdownMenuItem>Profile</DropdownMenuItem>
-    <DropdownMenuItem>Billing</DropdownMenuItem>
-    <DropdownMenuItem>Subscription</DropdownMenuItem>
+    <DropdownMenuItem onClick={()=>{navigate("/profile")}} className="cursor-pointer">Profile</DropdownMenuItem>
+    <DropdownMenuItem className="cursor-pointer">History</DropdownMenuItem>
+    <DropdownMenuItem className="cursor-pointer">Subscription</DropdownMenuItem>
+    <DropdownMenuItem className="cursor-pointer">Sign Out</DropdownMenuItem>
   </DropdownMenuContent>
 </DropdownMenu>
 }

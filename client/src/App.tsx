@@ -4,6 +4,7 @@ import Auth from "./pages/Auth";
 import Room from "./pages/Room";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Profile from "./pages/Profile";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
       <Route path="/" element={<Home />} />
       <Route path="/auth" element={<Auth />} />
       <Route path="/room" element={<Room />} />
+      <Route path="/profile" element={<Profile />} />
     </Routes>
     <Footer />
     </BrowserRouter>

@@ -10,8 +10,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { fetchData } from "@/config";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
 
   const [name, setName] = useState<string>("");
   const [role, setRole] = useState<string>("");
@@ -45,9 +47,10 @@ const Header = () => {
   <DropdownMenuContent>
     <DropdownMenuLabel>{name} <span className="text-sm text-gray-500">({role})</span></DropdownMenuLabel>
     <DropdownMenuSeparator />
-    <DropdownMenuItem>Profile</DropdownMenuItem>
-    <DropdownMenuItem>Billing</DropdownMenuItem>
-    <DropdownMenuItem>Subscription</DropdownMenuItem>
+    <DropdownMenuItem onClick={()=>{navigate("/profile")}} className="cursor-pointer">Profile</DropdownMenuItem>
+    <DropdownMenuItem className="cursor-pointer">Billing</DropdownMenuItem>
+    <DropdownMenuItem className="cursor-pointer">Subscription</DropdownMenuItem>
+    <DropdownMenuItem className="cursor-pointer">Sign Out</DropdownMenuItem>
   </DropdownMenuContent>
 </DropdownMenu>
 
