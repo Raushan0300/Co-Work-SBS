@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { fetchData } from "@/config";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
     Dialog,
     DialogContent,
@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/alert-dialog";
 
 const Room = () => {
+  const navigate = useNavigate();
     const location = useLocation();
     const search = new URLSearchParams(location.search);
     const roomId = search.get("id");
@@ -34,12 +35,6 @@ const Room = () => {
     const [totalPrice, setTotalPrice] = useState<number>(0);
 
     const token = localStorage.getItem("token");
-
-    // useEffect(()=>{
-    //     if(checkInDate && checkOutDate){
-    //         dateDifference(checkInDate.toISOString(), checkOutDate.toISOString());
-    //     }
-    // },[checkInDate, checkOutDate]);
 
     useEffect(()=>{
         const fetchRoomDetails = async()=>{
@@ -65,6 +60,7 @@ const Room = () => {
       const res = await fetchData('/book', "POST", {bookedRoom: roomId, checkInDate, checkOutDate, totalAmount: totalPrice}, {Authorization: token});
       if(res.status === 200){
         alert(res.data.msg);
+        navigate("/history");
       }
     }
 
@@ -110,7 +106,7 @@ const Room = () => {
         <div className="mt-5">
         <strong>Check In:</strong> {checkInDate?.toLocaleString()} <br />
         <strong>Check Out:</strong> {checkOutDate?.toLocaleString()} <br />
-        <strong>Total Price:</strong> {totalPrice} <br />
+        <strong>Total Price:</strong> $ {totalPrice} <br />
         </div>
       </AlertDialogDescription>
     </AlertDialogHeader>

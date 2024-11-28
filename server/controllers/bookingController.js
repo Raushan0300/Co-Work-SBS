@@ -29,7 +29,7 @@ const getHistoryController = async(req, res)=>{
 
     try {
         if(!user) return res.status(404).json({msg: "User not found"});
-        const history = await History.find({bookedBy: user._id}).select('-__v -bookedBy').sort({bookedDate: -1})
+        const history = await History.find({bookedBy: user._id}).select('-__v -bookedBy').sort({bookedDate: -1}).populate('bookedRoom', 'roomName roomType roomPrice roomLocation');
         return res.status(200).json({history});
     } catch (error) {
         console.log(error);
