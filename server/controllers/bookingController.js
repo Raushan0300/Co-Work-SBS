@@ -49,6 +49,6 @@ const printHistoryController = async(req, res)=>{
         console.log(error);
         return res.status(500).json({err: "Server Error Occured"});
     }
-}
+};
 
 module.exports = {newBookingController, getHistoryController, printHistoryController};
