@@ -1,4 +1,5 @@
 const History = require('../models/historyModel');
+const Room = require('../models/roomModel');
 const generateHtml = require('./printHistory');
 
 const newBookingController = async(req, res)=>{
@@ -17,7 +18,10 @@ const newBookingController = async(req, res)=>{
             checkOutDate,
             totalAmount
         });
-        await newBooking.save();
+        const booked = await newBooking.save();
+        if(!booked) return res.status(500).json({msg: "Booking failed"});
+        const room = await Room.findByIdAndUpdate(bookedRoom, {$inc: {roomCapacity: -1}});
+        if(!room) return res.status(404).json({msg: "Room not found"});
         return res.status(200).json({msg: "Booking successful"});
     } catch (error) {
         console.log(error);
@@ -38,6 +42,21 @@ const getHistoryController = async(req, res)=>{
     }
 };
 
+const getAdminHistoryController = async(req, res)=>{
+    const user = req.user;
+
+    try {
+        const history = await History.find().select('-__v').sort({bookedDate: -1}).populate('bookedRoom', 'addedBy roomName roomType roomPrice roomLocation');
+        for(let i=0; i<history.length; i++){
+            if(history[i].bookedRoom.addedBy !== user._id) history.splice(i, 1);
+        };
+        return res.status(200).json({history});
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({err: "Server Error Occured"});
+    }
+}
+
 const printHistoryController = async(req, res)=>{
     const {historyid} = req.headers;
 
@@ -51,4 +70,4 @@ const printHistoryController = async(req, res)=>{
     }
 };
 
-module.exports = {newBookingController, getHistoryController, printHistoryController};
+module.exports = {newBookingController, getHistoryController, printHistoryController, getAdminHistoryController};
